@@ -3,7 +3,7 @@ const errorMiddleware = (err, req, res, next) => {
     let error = { ...err };
     error.message = err.message;
 
-    console.errro(err);
+    console.error(err);
 
     //Mongoose bad ObjectID
     if (err.name === "CastError") {
