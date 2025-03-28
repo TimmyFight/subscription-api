@@ -33,7 +33,7 @@ const subscriptionSchema = new mongoose.Schema(
         default: "monthly",
       },
     },
-    catregory: {
+    category: {
       type: String,
       enum: {
         values: ["entertainment", "health", "sports", "technology", "other"],
@@ -57,15 +57,15 @@ const subscriptionSchema = new mongoose.Schema(
       type: Date,
       required: [true, "Subscription Start Date is required"],
       validate: {
-        validator: (startDate) => startDate > new Date(),
+        validator: (value) => value <= new Date(),
         message: "Subscription Start Date must be a future date",
       },
     },
     renewalDate: {
       type: Date,
       validate: {
-        validator: function (renewalDate) {
-          return renewalDate > this.startDate;
+        validator: function (value) {
+          return value > this.startDate;
         },
         message: "Subscription Renewal Date must be after the Start Date",
       },
